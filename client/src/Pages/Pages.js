@@ -1,13 +1,15 @@
 import { Route, Routes } from "react-router";
 import Header from "../Components/Header";
 import Dashboard from "./Dashboard/DashBoard";
+import Favorites from "./Favorites/Favorites";
 
 function Pages() {
   return (
     <>
       <Header />
-      <div style={{ marginTop: "4rem"}} />
+      <div style={{ marginTop: "4rem" }} />
       <Routes>
+        <Route eaxct path="/favorites" element={<Favorites />} />
         <Route eaxct path="/" element={<Dashboard />} />
       </Routes>
     </>
