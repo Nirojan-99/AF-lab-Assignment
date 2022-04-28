@@ -1,12 +1,14 @@
-.container{
+.container {
     background-color: #62BB46;
     width: 100%;
     height: auto;
 }
-.dp{
+
+.dp {
     text-align: center;
 }
-.avatar{
+
+.avatar {
     background-color: #fff;
     /* padding: 1rem; */
     height: 5rem;
@@ -15,20 +17,23 @@
     filter: drop-shadow(0 0 1px #333);
     border-radius: .3rem;
 }
-.user{
+
+.user {
     background-color: rgb(222, 218, 218);
     padding: 1rem;
     height: 3rem;
     width: 3rem;
     border-radius: .3rem;
 }
-.imagDiv{
+
+.imagDiv {
     position: relative;
     height: 5rem;
     width: 5rem;
     margin: auto;
 }
-.dpbtn{
+
+.dpbtn {
     outline: none;
     position: absolute;
     bottom: -.7rem;
@@ -40,7 +45,55 @@
     cursor: pointer;
     background-color: rgb(255, 255, 255);
 }
-.dpbtn:hover{
+
+.dpbtn:hover {
     box-shadow: 0 0 3px 2px rgba(51, 51, 51, 0.453);
     transition-duration: .3s;
+}
+
+.form {
+    width: 50%;
+    margin: auto;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form input {
+    /* width: 100%; */
+    border: none;
+    outline: none;
+    background-color: #eee;
+    padding: .5rem 0.4rem;
+    font-size: .8rem;
+    font-weight: 700;
+    border-radius: .2rem;
+    margin-bottom: .4rem;
+}
+
+.form label {
+    width: 100%;
+    font-size: .8rem;
+    font-weight: 600;
+    margin-bottom: .3rem;
+}
+
+.btn {
+    width: 100%;
+    background-color: #333;
+    border: none;
+    outline: none;
+    padding: .5rem 0;
+    color: #fff;
+    border-radius: .3rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.btn:hover {
+    background-color: #217e05;
+    color: rgb(255, 255, 255);
+    transition-duration: .7s;
 }

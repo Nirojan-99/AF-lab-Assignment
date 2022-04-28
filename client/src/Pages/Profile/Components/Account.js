@@ -12,7 +12,7 @@ function Account() {
       <div style={{ padding: "1rem" }}>
         <div className={classes.dp}>
           <div className={classes.imagDiv}>
-            {false ? (
+            {true ? (
               <img src={img} className={classes.avatar} />
             ) : (
               <FaUserAlt className={classes.user} />
@@ -21,8 +21,25 @@ function Account() {
           </div>
         </div>
         {/* body */}
-        <form>
+        <form className={classes.form}>
+          <label>User Name</label>
           <input />
+          <label>User Email</label>
+          <input />
+          <label>Mobile Number</label>
+          <input />
+          <label>User Address</label>
+          <input />
+          <button className={classes.btn}>Save Changes</button>
+        </form>
+        <form className={classes.form}>
+          <label>Old Password</label>
+          <input />
+          <label>New Password</label>
+          <input />
+          <label>Re-type Password</label>
+          <input />
+          <button className={classes.btn}>Change Password</button>
         </form>
       </div>
     </div>
