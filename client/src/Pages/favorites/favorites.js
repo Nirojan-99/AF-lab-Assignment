@@ -1,5 +1,5 @@
 import classes from "../Dashboard/Dashboard.module.css";
-import Grid from "../Util/Grid";
+import Grid from "../Util/Grid/Grid";
 
 function Favorites() {
   return (

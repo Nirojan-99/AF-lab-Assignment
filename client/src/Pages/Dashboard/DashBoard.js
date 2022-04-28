@@ -1,4 +1,4 @@
-import Grid from "../Util/Grid";
+import Grid from "../Util/Grid/Grid";
 import classes from "./Dashboard.module.css";
 
 function Dashboard() {
