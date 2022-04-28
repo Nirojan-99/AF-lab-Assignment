@@ -5,7 +5,10 @@ import { NavLink } from "react-router-dom";
 function Header() {
   return (
     <div className={classes.container_header}>
-      <img className={classes.logo} src={logo} />
+      <a href="/" className={classes.logoContiner}>
+        <img className={classes.logo} src={logo} />
+        <div className={classes.title}>BrandBucket</div>
+      </a>
       <div className={classes.grow} />
       <NavLink
         className={classes.nav}

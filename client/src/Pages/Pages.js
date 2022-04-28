@@ -1,13 +1,14 @@
 import { Route, Routes } from "react-router";
 import Header from "../Components/Header";
+import Dashboard from "./Dashboard/DashBoard";
 
 function Pages() {
   return (
     <>
       <Header />
-      <div style={{ marginTop: "5%" }} />
+      <div style={{ marginTop: "4rem"}} />
       <Routes>
-        <Route eaxct path="/" element={<></>} />
+        <Route eaxct path="/" element={<Dashboard />} />
       </Routes>
     </>
   );
