@@ -12,6 +12,7 @@ function Pages() {
       <div style={{ marginTop: "4rem" }} />
       <Routes>
         <Route eaxct path="/checkout" element={<></>} />
+        <Route eaxct path="/product/new" element={<></>} />
         <Route eaxct path="/favorites" element={<Favorites />} />
         <Route eaxct path="/profile" element={<Profile />} />
         <Route eaxct path="/cart" element={<Cart />} />

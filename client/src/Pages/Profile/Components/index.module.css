@@ -97,3 +97,38 @@
     color: rgb(255, 255, 255);
     transition-duration: .7s;
 }
+
+.contain {
+    display: flex;
+    padding-top: 1.5rem;
+}
+
+.addnew {
+    display: flex;
+    padding: 1.5rem 0;
+}
+
+.newBtn {
+    margin-right: 3rem;
+    padding: .4rem 1.3rem;
+    border: none;
+    outline: none;
+    border-radius: .3rem;
+    color: #fff;
+    background-color: #217e05;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.newBtn:hover {
+    background-color: #333;
+    color: #fff;
+    transition-duration: .5s;
+}
+
+.innerContainer {
+    width: 60%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
