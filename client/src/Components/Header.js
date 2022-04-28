@@ -17,7 +17,12 @@ function Header() {
       >
         Cart
       </NavLink>
-      <NavLink className={classes.nav} to="/favorites">
+      <NavLink
+      exact={true}
+        activeClassName={classes.navActive}
+        className={classes.nav}
+        to="/favorites"
+      >
         Favorites
       </NavLink>
       <NavLink className={classes.nav} to="/profile">
