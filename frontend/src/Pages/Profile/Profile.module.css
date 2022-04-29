@@ -36,3 +36,29 @@
     margin-top: 2rem;
     width: 50%;
 }
+
+@keyframes example {
+    0% {
+        position: absolute;
+        left: 100%;
+    }
+
+    100% {
+        position: absolute;
+        left: 25%;
+    }
+}
+
+.anomationClass {
+    margin: auto;
+    margin-top: 2rem;
+    width: 50%;
+    /* position: absolute;
+    left: 50%;
+    right: 50%; */
+    animation-direction: alternate;
+    animation-name: example;
+    animation-duration: .3s;
+    transition-property: all;
+    transition-timing-function: linear;
+}

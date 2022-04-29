@@ -132,3 +132,73 @@
     display: flex;
     flex-direction: column;
 }
+
+.paymentContainer {
+    min-height: 75vh;
+}
+
+.payBor {
+    border-radius: .3rem;
+    border: 2px solid #333;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.number {
+    font-weight: 900;
+    color: #333;
+    margin: 0 1rem;
+}
+
+.date {
+    font-weight: 700;
+    color: rgb(222, 222, 222);
+    font-size: .9rem;
+}
+
+.remove {
+    background-color: #62BB46;
+    border: none;
+    outline: none;
+    color: rgb(202, 1, 1);
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: .3rem;
+    padding: .8em 1rem;
+}
+
+.remove:hover {
+    background-color: rgba(255, 2, 2, 0.145);
+    transition-duration: .4s;
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.newPromo a {
+    text-transform: none;
+    text-decoration: none;
+    background-color: #1a5f05;
+    padding: .4rem 1rem;
+    margin-right: 1rem;
+    color: #fff;
+    border-radius: .3rem;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.newPromo {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.newPromo a:hover {
+    background-color: #333;
+    color: #fff;
+    transition-duration: .3s;
+}

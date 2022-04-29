@@ -3,9 +3,12 @@ import { useState, useEffect } from "react";
 import Account from "./Components/Account";
 import Products from "./Components/Products";
 import Order from "./Components/Order";
+import Payment from "./Components/Payment";
+import Promotions from "./Components/Promotions";
 
 function Profile() {
   const [page, setPage] = useState("details");
+  const [aniClass, setAniClass] = useState(classes.container);
 
   const render = () => {
     switch (page) {
@@ -18,6 +21,12 @@ function Profile() {
       case "order":
         return <Order />;
         break;
+      case "payment":
+        return <Payment />;
+        break;
+      case "Promotions":
+        return <Promotions />;
+        break;
       default:
         break;
     }
@@ -29,6 +38,10 @@ function Profile() {
         <div
           onClick={() => {
             setPage("details");
+            setAniClass(classes.anomationClass);
+            setTimeout(() => {
+              setAniClass(classes.container);
+            }, 400);
           }}
           className={page === "details" ? classes.activeTabs : classes.tabs}
         >
@@ -37,6 +50,10 @@ function Profile() {
         <div
           onClick={() => {
             setPage("products");
+            setAniClass(classes.anomationClass);
+            setTimeout(() => {
+              setAniClass(classes.container);
+            }, 400);
           }}
           className={page === "products" ? classes.activeTabs : classes.tabs}
         >
@@ -45,6 +62,10 @@ function Profile() {
         <div
           onClick={() => {
             setPage("order");
+            setAniClass(classes.anomationClass);
+            setTimeout(() => {
+              setAniClass(classes.container);
+            }, 400);
           }}
           className={page === "order" ? classes.activeTabs : classes.tabs}
         >
@@ -53,6 +74,10 @@ function Profile() {
         <div
           onClick={() => {
             setPage("payment");
+            setAniClass(classes.anomationClass);
+            setTimeout(() => {
+              setAniClass(classes.container);
+            }, 400);
           }}
           className={page === "payment" ? classes.activeTabs : classes.tabs}
         >
@@ -61,13 +86,17 @@ function Profile() {
         <div
           onClick={() => {
             setPage("Promotions");
+            setAniClass(classes.anomationClass);
+            setTimeout(() => {
+              setAniClass(classes.container);
+            }, 400);
           }}
           className={page === "Promotions" ? classes.activeTabs : classes.tabs}
         >
           <button>Promotions</button>
         </div>
       </div>
-      <div className={classes.container}>{render()}</div>
+      <div className={aniClass}>{render()}</div>
     </>
   );
 }

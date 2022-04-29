@@ -1,0 +1,39 @@
+.container {
+    border: 2px solid #333;
+    padding: 1rem;
+    margin: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: .2rem;
+}
+
+.remove {
+    background-color: #62BB46;
+    border: none;
+    outline: none;
+    color: rgb(202, 1, 1);
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: .3rem;
+    padding: .8em 1rem;
+}
+
+.remove:hover {
+    background-color: rgba(255, 2, 2, 0.145);
+    transition-duration: .4s;
+}
+
+.title {
+    font-weight: 900;
+    color: #333;
+    margin: 0 1rem;
+    padding: .5rem 1rem;
+    background-color: rgba(255, 255, 255, 0.532);
+}
+
+.code {
+    font-weight: 700;
+    color: rgb(56, 56, 56);
+    font-size: .9rem;
+}
