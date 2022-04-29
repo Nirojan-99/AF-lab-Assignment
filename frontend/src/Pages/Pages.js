@@ -1,5 +1,7 @@
 import { Route, Routes } from "react-router";
 import Header from "../Components/Header";
+import Login from "./Auth/Login/Login";
+import Register from "./Auth/Register/Register";
 import Cart from "./Cart/Cart";
 import Dashboard from "./Dashboard/DashBoard";
 import Favorites from "./Favorites/Favorites";
@@ -13,8 +15,10 @@ function Pages() {
       <Header />
       <div style={{ marginTop: "4rem" }} />
       <Routes>
+        <Route eaxct path="/auth/login" element={<Login />} />
+        <Route eaxct path="/auth/register" element={<Register />} />
         <Route eaxct path="/checkout" element={<></>} />
-        <Route eaxct path="/promo/add" element={<NewPromo/>} />
+        <Route eaxct path="/promo/add" element={<NewPromo />} />
         <Route eaxct path="/product/new" element={<Products />} />
         <Route eaxct path="/product/edit/:id" element={<Products />} />
         <Route eaxct path="/favorites" element={<Favorites />} />
