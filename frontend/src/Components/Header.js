@@ -4,8 +4,8 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 
 function Header() {
-  const [isLogedin, setLog] = useState(false);
-  const [role, setRole] = useState("tra");
+  const [isLogedin, setLog] = useState(true);
+  const [role, setRole] = useState("customer");
   return (
     <div className={classes.container_header}>
       <a href="/" className={classes.logoContiner}>
