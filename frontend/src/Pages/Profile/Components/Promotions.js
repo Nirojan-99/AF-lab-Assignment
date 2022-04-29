@@ -8,7 +8,7 @@ function Promotions() {
         <div style={{ padding: "1rem" }} className={classes.paymentContainer}>
             <div className={classes.top}>
                 <div style={{flexGrow:1}}/>
-                <div className={classes.newPromo}><a>Add Promo</a></div>
+                <div className={classes.newPromo}><a href="/promo/add">Add Promo</a></div>
             </div>
           <Promotion />
           <Promotion />

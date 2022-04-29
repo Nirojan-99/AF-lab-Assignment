@@ -1,0 +1,70 @@
+.container {
+    width: 50%;
+    margin: auto;
+    margin-top: 7rem;
+    border: 2px solid #62BB46;
+    display: flex;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+}
+.image{
+    width: 15rem;
+    height: 24rem;
+    object-fit: cover;
+    background-color: #fff;
+    margin: 0;
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
+.formcontainer{
+    /* margin-left: 1rem; */
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+.formcontainer input{
+    border: none;
+    outline: none;
+    padding: .7rem .5rem;
+    margin-bottom: .5rem;
+    color: #fff;
+    font-weight: 700;
+    border-radius: .3rem;
+    background-color: rgba(51, 51, 51, 0.455);
+}
+.formcontainer label{
+    font-weight: 700;
+    margin-bottom: .3rem;
+    color: #333;
+    font-size: .8rem;
+}
+.formcontainer textarea{
+    border: none;
+    outline: none;
+    padding: .7rem .5rem;
+    margin-bottom: .5rem;
+    color: #fff;
+    font-weight: 700;
+    border-radius: .3rem;
+    background-color: rgba(51, 51, 51, 0.455);
+    min-height: 4rem;
+    resize: none;
+} 
+.add{
+    background-color: #62BB46;
+    border: none;
+    outline: none;
+    border-radius: .3rem;
+    padding: .6rem 1rem;
+    margin: 1rem 0;
+    font-weight: 700;
+    color: #333;
+    cursor: pointer;
+}
+.add:hover{
+    background-color: #333;
+    color: #62BB46;
+    transition-duration: .5s;
+}

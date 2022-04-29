@@ -1,6 +1,8 @@
 import classes from "./Grid.module.css";
+import { useNavigate } from "react-router-dom";
 
 function Grid() {
+  const navigate = useNavigate()
   return (
     <>
       <div className={classes.productContainer}>
@@ -27,7 +29,7 @@ function Grid() {
               </>
             ) : (
               <>
-                <button className={classes.positive}>Edit</button>
+                <button className={classes.positive} onClick={()=>{navigate("/product/edit/id")}} >Edit</button>
                 <button className={classes.negative}>Delete</button>
               </>
             )}
