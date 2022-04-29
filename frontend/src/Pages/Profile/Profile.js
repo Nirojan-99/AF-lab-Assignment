@@ -5,6 +5,7 @@ import Products from "./Components/Products";
 import Order from "./Components/Order";
 import Payment from "./Components/Payment";
 import Promotions from "./Components/Promotions";
+import Customers from "./Components/Customers";
 
 function Profile() {
   const [page, setPage] = useState("details");
@@ -26,6 +27,9 @@ function Profile() {
         break;
       case "Promotions":
         return <Promotions />;
+        break;
+      case "Customers":
+        return <Customers />;
         break;
       default:
         break;
@@ -94,6 +98,18 @@ function Profile() {
           className={page === "Promotions" ? classes.activeTabs : classes.tabs}
         >
           <button>Promotions</button>
+        </div>
+        <div
+          onClick={() => {
+            setPage("Customers");
+            setAniClass(classes.anomationClass);
+            setTimeout(() => {
+              setAniClass(classes.container);
+            }, 400);
+          }}
+          className={page === "Customers" ? classes.activeTabs : classes.tabs}
+        >
+          <button>Customers</button>
         </div>
       </div>
       <div className={aniClass}>{render()}</div>

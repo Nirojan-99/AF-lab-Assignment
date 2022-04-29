@@ -5,6 +5,7 @@ import Dashboard from "./Dashboard/DashBoard";
 import Favorites from "./Favorites/Favorites";
 import Products from "./Products/Products";
 import Profile from "./Profile/Profile";
+import NewPromo from "./Promo/NewPromo";
 
 function Pages() {
   return (
@@ -13,7 +14,7 @@ function Pages() {
       <div style={{ marginTop: "4rem" }} />
       <Routes>
         <Route eaxct path="/checkout" element={<></>} />
-        <Route eaxct path="/promo/add" element={<></>} />
+        <Route eaxct path="/promo/add" element={<NewPromo/>} />
         <Route eaxct path="/product/new" element={<Products />} />
         <Route eaxct path="/product/edit/:id" element={<Products />} />
         <Route eaxct path="/favorites" element={<Favorites />} />

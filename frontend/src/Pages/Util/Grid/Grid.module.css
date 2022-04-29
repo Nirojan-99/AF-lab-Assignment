@@ -2,14 +2,14 @@
     width: 23rem;
     background-color: #fff;
     height: auto;
-    border-radius: .5rem;
+    border-radius: .1rem;
     padding-bottom: .5rem;
-    box-shadow: 0 1px 2px 1px rgba(51, 51, 51, 0.442);
+    box-shadow: 1px 1px 4px 1px rgba(51, 51, 51, 0.442);
 }
 
 .image {
     width: 23rem;
-    border-radius: .5rem .5rem 0 0;
+    border-radius: .1rem .1rem 0 0;
     height: 11rem;
     object-fit: cover;
     margin-bottom: .3rem;
