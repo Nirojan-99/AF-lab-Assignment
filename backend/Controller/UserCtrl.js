@@ -190,4 +190,5 @@ exports.RemoveFavourite = (ctx) => {
   }
 };
 
+exports.userData = userData;
 // [...userData.values()];
