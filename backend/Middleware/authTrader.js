@@ -1,7 +1,7 @@
-module.exports = (req, res, next) => {
+module.exports = (req, next) => {
   if (req.header.role !== "trader") {
     ctx.body = { auth: "fail" };
-    ctx.status = 404;
+    ctx.status = 200;
     return;
   }
   next();

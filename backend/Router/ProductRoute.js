@@ -6,6 +6,7 @@ const auth = require("../Middleware/auth");
 const ProductRouter = new Router({ prefix: "/product" });
 
 ProductRouter.get("/", auth, ProductCtrl.GetAllProducts)
+  .get("/search/:name", auth, ProductCtrl.GetSearchProduct)
   .get("/offer/:id", auth, authTrader, ProductCtrl.GetPromotions)
   .put("/offer/:id", auth, authTrader, ProductCtrl.AddPromotion)
   .del("/offer/:id", auth, authTrader, ProductCtrl.DeletePromotions)

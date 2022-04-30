@@ -2,10 +2,17 @@ import classes from "./Header.module.css";
 import logo from "../Assets/logo1.png";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { logout } from "../Store/auth";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
-  const [isLogedin, setLog] = useState(true);
-  const [role, setRole] = useState("customer");
+  //data
+  const { token, userID, role } = useSelector((state) => state.loging);
+  const disptch = useDispatch();
+  const navigate = useNavigate();
+
   return (
     <div className={classes.container_header}>
       <a href="/" className={classes.logoContiner}>
@@ -13,7 +20,7 @@ function Header() {
         <div className={classes.title}>BrandBucket</div>
       </a>
       <div className={classes.grow} />
-      {!isLogedin && (
+      {!token && (
         <>
           <NavLink className={classes.nav} to="/auth/login">
             Login
@@ -23,7 +30,7 @@ function Header() {
           </NavLink>
         </>
       )}
-      {isLogedin && role === "customer" && (
+      {token && role === "customer" && (
         <>
           <NavLink className={classes.nav} to="/cart">
             Cart
@@ -33,12 +40,20 @@ function Header() {
           </NavLink>
         </>
       )}
-      {isLogedin && (
+      {token && (
         <>
           <NavLink className={classes.nav} to="/profile">
             Profile
           </NavLink>
-          <div className={classes.nav}>Logout</div>
+          <div
+            className={classes.nav}
+            onClick={() => {
+              disptch(logout());
+              window.location.reload();
+            }}
+          >
+            Logout
+          </div>
         </>
       )}
     </div>

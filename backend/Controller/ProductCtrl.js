@@ -18,7 +18,7 @@ exports.GetAllProducts = (ctx) => {
 
 exports.GetProduct = (ctx) => {
   const { id } = ctx.params;
-  const { userID } = ctx.request.body;
+  const { userID } = ctx.query;
   let userProducts = [];
   if (userID) {
     for (let key of productData.keys()) {
@@ -128,6 +128,18 @@ exports.DeletePromotions = (ctx) => {
     ctx.body = { deleted: false };
     ctx.status = 404;
   }
+};
+
+exports.GetSearchProduct = (ctx) => {
+  const { name } = ctx.params;
+  let data = [];
+  for (let key of productData.keys()) {
+    if (productData.get(key).title === name) {
+      data.push(productData.get(key));
+    }
+  }
+  ctx.body = { data: data };
+  ctx.status = 200;
 };
 
 exports.GetPromotion = (ctx) => {};

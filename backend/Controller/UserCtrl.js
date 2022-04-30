@@ -21,7 +21,7 @@ const seconduser = new User(
   "1234",
   "0712461300",
   "Jaffna , PointPedro",
-  "customer"
+  "trader"
 );
 
 userData.set("53c918cb95a0401145c4e4c1e4346eff", user);

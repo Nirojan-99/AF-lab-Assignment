@@ -1,6 +1,9 @@
 import classes from "./index.module.css";
 import Grid from "../../Util/Grid/Grid";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 const SingleProduct = () => {
   return (
@@ -15,7 +18,27 @@ const SingleProduct = () => {
 };
 
 function Products() {
+  //hooks
   const navigate = useNavigate();
+
+  //state
+  const [products, setProducts] = useState([]);
+  const { token, userID } = useSelector((state) => state.loging);
+
+  //useEffect call
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/product/123?userID=${userID}`, {
+        headers: { Authorization: "valodation " + token },
+      })
+      .then((res) => {
+        if (res.data) {
+          setProducts(res.data);
+        }
+      })
+      .catch((er) => {});
+  }, []);
+
   return (
     <>
       <div className={classes.container}>
@@ -30,9 +53,12 @@ function Products() {
             Add Product
           </button>
         </div>
-        <SingleProduct />
-        <SingleProduct />
-        <div style={{paddingBottom:"2rem"}}/>
+        {products.length >0 &&
+          products.map((row) => {
+            return <SingleProduct />;
+          })}
+
+        <div style={{ paddingBottom: "2rem" }} />
       </div>
     </>
   );
