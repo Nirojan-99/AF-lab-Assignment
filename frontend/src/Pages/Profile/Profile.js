@@ -8,6 +8,7 @@ import Promotions from "./Components/Promotions";
 import Customers from "./Components/Customers";
 
 function Profile() {
+  //state
   const [page, setPage] = useState("details");
   const [aniClass, setAniClass] = useState(classes.container);
 

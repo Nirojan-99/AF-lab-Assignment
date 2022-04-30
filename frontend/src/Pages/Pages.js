@@ -27,7 +27,7 @@ function Pages() {
         <Route eaxct path="/profile" element={<Profile />} />
         <Route eaxct path="/cart" element={<Cart />} />
         <Route eaxct path="/" element={<Dashboard />} />
-        <Route path="*" element={<Navigate to={"/"} />} />
+        <Route eaxct={false} path="*" element={<Navigate to={"/"} />} />
       </Routes>
     </>
   );

@@ -14,10 +14,20 @@ const user = new User(
   "client"
 );
 
+const seconduser = new User(
+  "8d1601d6666579e7ca8530d4fc182906",
+  "nirojan",
+  "email@.com",
+  "1234",
+  "0712461300",
+  "Jaffna , PointPedro",
+  "customer"
+);
+
 userData.set("53c918cb95a0401145c4e4c1e4346eff", user);
+userData.set("8d1601d6666579e7ca8530d4fc182906", seconduser);
 
 exports.Register = (ctx) => {
-
   if (ctx.request.body) {
     const { email, mobile, address, name, role, password } = ctx.request.body;
     const id = randomBytes(16).toString("hex");
@@ -89,6 +99,7 @@ exports.UpdateUser = (ctx) => {
   if (ctx.request.body.id) {
     const { email, mobile, address, name, role, password, id } =
       ctx.request.body;
+    console.log(ctx.request.body);
     const newUser = new User(id, name, email, password, mobile, address, role);
     userData.set(newUser.id, newUser);
     ctx.body = { updated: true };
