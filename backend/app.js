@@ -1,10 +1,16 @@
 const koa = require("koa");
-const bodyParser = require('koa-bodyparser');
+const bodyParser = require("koa-bodyparser");
 const UserRouter = require("./Router/UserRoute");
 
 const app = new koa();
 
-app.use(bodyParser());
+app.use(
+  bodyParser({
+    formidable: { uploadDir: "./uploads" }, 
+    multipart: true,
+    urlencoded: true,
+  })
+);
 // app.use((ctx) => {
 //   console.log(ctx.request);
 // });

@@ -4,6 +4,18 @@ const jwt = require("jsonwebtoken");
 
 const userData = new Map();
 
+const user = new User(
+  "53c918cb95a0401145c4e4c1e4346eff",
+  "niro",
+  "email@",
+  "1234",
+  "1233",
+  "alvai",
+  "client"
+);
+
+userData.set("53c918cb95a0401145c4e4c1e4346eff", user);
+
 exports.Register = (ctx) => {
   if (ctx.request.body) {
     const { email, mobile, address, name, role, password } = ctx.request.body;
@@ -94,6 +106,86 @@ exports.DeleteUser = (ctx) => {
     ctx.status = 200;
   } else {
     ctx.body = { deleted: false };
+    ctx.status = 404;
+  }
+};
+
+exports.AddDP = (ctx) => {};
+exports.DeleteDp = (ctx) => {};
+
+exports.AddCart = (ctx) => {
+  const { id, cart } = ctx.request.body;
+  if (userData.has(id)) {
+    userData.get(id).setCart(cart);
+    ctx.body = { added: true };
+    ctx.status = 200;
+  } else {
+    ctx.body = { added: false };
+    ctx.status = 404;
+  }
+};
+
+exports.GetCarts = (ctx) => {
+  const { id } = ctx.params;
+  if (userData.has(id)) {
+    ctx.body = userData.get(id).getCart();
+    ctx.status = 200;
+  } else {
+    ctx.body = { fetched: false };
+    ctx.status = 404;
+  }
+};
+
+exports.DeleteCart = (ctx) => {
+  const { id } = ctx.params;
+  if (userData.has(id)) {
+    userData.get(id).deleteCart();
+    ctx.body = { deleted: true };
+    ctx.status = 200;
+  } else {
+    ctx.body = { deleted: false };
+    ctx.status = 404;
+  }
+};
+
+exports.AddFavorite = (ctx) => {
+  const { id } = ctx.params;
+  const { data } = ctx.request.body;
+  if (userData.has(id)) {
+    userData.get(id).setFavorites(data);
+    ctx.body = { added: true };
+    ctx.status = 200;
+  } else {
+    ctx.body = { added: false };
+    ctx.status = 404;
+  }
+};
+
+exports.GetFavourites = (ctx) => {
+  const { id } = ctx.params;
+  if (userData.has(id)) {
+    ctx.body = userData.get(id).getFavorites();
+    ctx.status = 200;
+  } else {
+    ctx.body = { fetched: false };
+    ctx.status = 404;
+  }
+};
+
+exports.RemoveFavourite = (ctx) => {
+  const { id } = ctx.params;
+  const { data } = ctx.request.body;
+  if (userData.has(id)) {
+    const res = userData.get(id).removeFavorite(data);
+    if (res) {
+      ctx.body = { remeoved: true };
+      ctx.status = 200;
+    } else {
+      ctx.body = { remeoved: false };
+      ctx.status = 404;
+    }
+  } else {
+    ctx.body = { remeoved: false };
     ctx.status = 404;
   }
 };
