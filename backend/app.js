@@ -1,5 +1,7 @@
 const koa = require("koa");
 const bodyParser = require("koa-bodyparser");
+const cors = require("@koa/cors");
+
 const UserRouter = require("./Router/UserRoute");
 const ProductRouter = require("./Router/ProductRoute");
 const OrderRouter = require("./Router/OrderRoute");
@@ -14,6 +16,8 @@ app.use(
     urlencoded: true,
   })
 );
+
+app.use(cors());
 
 app.use(PaymentRouter.routes()).use(PaymentRouter.allowedMethods());
 app.use(OrderRouter.routes()).use(OrderRouter.allowedMethods());

@@ -17,6 +17,7 @@ const user = new User(
 userData.set("53c918cb95a0401145c4e4c1e4346eff", user);
 
 exports.Register = (ctx) => {
+
   if (ctx.request.body) {
     const { email, mobile, address, name, role, password } = ctx.request.body;
     const id = randomBytes(16).toString("hex");

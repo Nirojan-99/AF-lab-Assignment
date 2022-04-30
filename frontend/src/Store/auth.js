@@ -11,12 +11,12 @@ const authStore = createSlice({
   initialState: initial,
   reducers: {
     login(state, action) {
-      state.role = action.payload.type;
+      state.role = action.payload.role;
       state.userID = action.payload.id;
       state.token = action.payload.token;
 
       localStorage.setItem("token", state.token);
-      localStorage.setItem("role", state.type);
+      localStorage.setItem("role", state.role);
       localStorage.setItem("userID", state.userID);
 
       setTimeout(() => {
