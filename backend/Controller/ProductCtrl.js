@@ -18,12 +18,24 @@ exports.GetAllProducts = (ctx) => {
 
 exports.GetProduct = (ctx) => {
   const { id } = ctx.params;
-  if (productData.has(id)) {
-    ctx.body = { data: productData.get(id) };
+  const { userID } = ctx.request.body;
+  let userProducts = [];
+  if (userID) {
+    for (let key of productData.keys()) {
+      if (productData.get(key).userID === userID) {
+        userProducts.push(productData.get(key));
+      }
+    }
+    ctx.body = { data: userProducts };
     ctx.status = 200;
   } else {
-    ctx.body = { fetched: false };
-    ctx.status = 404;
+    if (productData.has(id)) {
+      ctx.body = { data: productData.get(id) };
+      ctx.status = 200;
+    } else {
+      ctx.body = { fetched: false };
+      ctx.status = 404;
+    }
   }
 };
 
@@ -79,3 +91,43 @@ exports.DeleteProduct = (ctx) => {
     ctx.status = 404;
   }
 };
+
+exports.GetPromotions = (ctx) => {
+  const { id } = ctx.params;
+  let userProducts = [];
+  for (let key of productData.keys()) {
+    if (productData.get(key).userID === userID) {
+      userProducts.push(productData.get(key).promotion);
+    }
+  }
+  ctx.body = { data: userProducts };
+  ctx.status = 200;
+};
+
+exports.AddPromotion = (ctx) => {
+  const { id } = ctx.params;
+  const { title, discount } = ctx.request.body;
+
+  if (productData.has(id)) {
+    productData.get(id).setPromotion(title, discount);
+    ctx.body = { updated: true };
+    ctx.status = 200;
+  } else {
+    ctx.body = { updated: false };
+    ctx.status = 404;
+  }
+};
+
+exports.DeletePromotions = (ctx) => {
+  const { id } = ctx.params;
+  if (productData.has(id)) {
+    productData.get(id).removePromotion();
+    ctx.body = { deleted: true };
+    ctx.status = 200;
+  } else {
+    ctx.body = { deleted: false };
+    ctx.status = 404;
+  }
+};
+
+exports.GetPromotion = (ctx) => {};
