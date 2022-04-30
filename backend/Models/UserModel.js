@@ -7,6 +7,9 @@ class User {
     this.mobile = mobile;
     this.address = address;
     this.role = role;
+    this.cart=[];
+    this.favorites=[];
+    
   }
 }
 
