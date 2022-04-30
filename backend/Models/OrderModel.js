@@ -1,6 +1,6 @@
 class Order {
   constructor(id, userID, total, address, products, payment) {
-    this.is = id;
+    this.id = id;
     this.userID = userID;
     this.total = total;
     this.address = address;
