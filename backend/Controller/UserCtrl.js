@@ -17,14 +17,64 @@ const user = new User(
 const seconduser = new User(
   "8d1601d6666579e7ca8530d4fc182906",
   "nirojan",
-  "email@.com",
+  "project2020sliit@gmail.com",
   "1234",
   "0712461300",
   "Jaffna , PointPedro",
   "trader"
 );
+const third = new User(
+  "8d1601d6666579e7ca8530d4fc182",
+  "nirojan1",
+  "sliit@gmail.com",
+  "1234",
+  "0712461300",
+  "Jaffna , PointPedro",
+  "trader"
+);
+const forth = new User(
+  "8d1601d6666579e7ca8530d4",
+  "nirojan2",
+  "project@gmail.com",
+  "1234",
+  "0712461300",
+  "Jaffna , PointPedro",
+  "customer"
+);
+const fifth = new User(
+  "8d1601d6666579e7ca853",
+  "nirojan3",
+  "project2020@gmail.com",
+  "1234",
+  "0712461300",
+  "Jaffna , PointPedro",
+  "trader"
+);
+const sixth = new User(
+  "8d1601d6666579e7ca8530d4fc1",
+  "nirojan4",
+  "project2020sliit@gmail.com",
+  "1234",
+  "0712461300",
+  "Jaffna , PointPedro",
+  "customer"
+);
+const seventh = new User(
+  "8d1601d6666579e7ca8530d4fc1829",
+  "nirojan5",
+  "project2020sliit@gmail.com",
+  "1234",
+  "0712461300",
+  "Jaffna , PointPedro",
+  "customer"
+);
 
 userData.set("53c918cb95a0401145c4e4c1e4346eff", user);
+userData.set("8d1601d6666579e7ca8530d4fc182", third);
+userData.set("8d1601d6666579e7ca8530d4", forth);
+userData.set("8d1601d6666579e7ca853", fifth);
+userData.set("8d1601d6666579e7ca8530d4fc1", sixth);
+userData.set("8d1601d6666579e7ca8530d4fc1829", seventh);
 userData.set("8d1601d6666579e7ca8530d4fc182906", seconduser);
 
 exports.Register = (ctx) => {
@@ -93,6 +143,18 @@ exports.GetUsers = (ctx) => {
     ctx.body = { found: false };
     ctx.status = 404;
   }
+};
+
+exports.SearchUser = (ctx) => {
+  const { name } = ctx.params;
+  let searchResult = [];
+  for (let key of userData.keys()) {
+    if (userData.get(key).name.includes(name)) {
+      searchResult.push(userData.get(key));
+    }
+  }
+  ctx.body = { data: searchResult };
+  ctx.status = 200;
 };
 
 exports.UpdateUser = (ctx) => {

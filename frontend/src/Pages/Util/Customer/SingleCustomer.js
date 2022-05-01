@@ -1,6 +1,6 @@
 import classes from "./SingleCustomer.module.css";
 
-function SingleCustomer() {
+function SingleCustomer(props) {
   return (
     <>
       <div className={classes.container}>
@@ -11,12 +11,12 @@ function SingleCustomer() {
           />
         </div>
         <div className={classes.details}>
-          <div  className={classes.name}>User Name</div>
-          <div className={classes.email}>Email@gmail.com</div>
-          <div className={classes.mobile}>0778862173</div>
+          <div  className={classes.name}>{props.data.name}</div>
+          <div className={classes.email}>{props.data.email}</div>
+          <div className={classes.mobile}>{props.data.mobile}</div>
         </div>
         <div style={{flexGrow:1}}/>
-        <div className={classes.address}>jaffna,alvai</div>
+        <div className={classes.address}>{props.data.address}</div>
       </div>
     </>
   );

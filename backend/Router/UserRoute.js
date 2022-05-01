@@ -16,7 +16,7 @@ UserRouter.post("/", UserCtrl.Register)
   .del("/favorite/:id", auth, UserCtrl.RemoveFavourite)
   .post("/auth/login", UserCtrl.Login)
   .get("/:id", auth, UserCtrl.GetUser)
-  // .get("/", auth, authTrader, UserCtrl.GetUsers)
+  .get("/search/:name", auth, authTrader, UserCtrl.SearchUser)
   .get("/", UserCtrl.GetUsers)
   .put("/", auth, UserCtrl.UpdateUser)
   .delete("/", auth, UserCtrl.DeleteUser);

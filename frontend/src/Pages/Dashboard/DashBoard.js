@@ -25,13 +25,15 @@ function Dashboard() {
   }, []);
 
   //search controller
-  const search = () => {
+  const search = (event) => {
+    event.preventDefault();
     if (searchvalue) {
       axios
-        .get(`http://localhost:5000/product/search/${searchvalue}`, {
+        .get(`http://localhost:5000/product/search/${searchvalue.trim()}`, {
           headers: { Authorization: "valodation " + token },
         })
         .then((res) => {
+          console.log(res.data.data);
           setProducts(res.data.data);
         })
         .catch((er) => {});
@@ -40,28 +42,63 @@ function Dashboard() {
     }
   };
 
+  //delete handler
+  const deleteHandler = (index, id) => {
+    axios
+      .delete("http://localhost:5000/product/" + id, {
+        headers: { Authorization: "valodation " + token },
+      })
+      .then((res) => {
+        setProducts((pre) => {
+          const array = [...pre];
+          array.splice(index, 1);
+          return array;
+        });
+      })
+      .catch((er) => {
+        console.log(er);
+      });
+  };
+
   return (
     <>
       <div className={classes.header}>
         <div style={{ flexGrow: 1 }} />
-        <form className={classes.formContainer} onSubmit={search}>
+        <form className={classes.formContainer}>
           <input
             placeholder="Search..."
             type={"string"}
-            onKeyDown={search}
             onChange={(event) => {
               setSearch(event.target.value);
             }}
             value={searchvalue}
           />
-          <button type="submit">Search</button>
+          <button onClick={search} type="submit">
+            Search
+          </button>
         </form>
       </div>
       <div className={classes.productContainer}>
-        {products.length > 0 &&
-          products.map((row) => {
-            return <Grid />;
-          })}
+        {products.length > 0 ? (
+          products.map((row, index) => {
+            return (
+              <Grid
+                key={index}
+                index={index}
+                handler={deleteHandler}
+                data={row}
+              />
+            );
+          })
+        ) : (
+          <>
+            <div
+              style={{ textAlign: "center", color: "red", fontWeight: "700" }}
+            >
+              No products available
+            </div>
+          </>
+        )}
       </div>
     </>
   );

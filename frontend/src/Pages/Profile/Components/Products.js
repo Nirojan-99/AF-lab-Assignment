@@ -5,12 +5,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
-const SingleProduct = () => {
+const SingleProduct = (props) => {
   return (
     <>
       <div className={classes.contain}>
         <div style={{ flexGrow: 1 }} />
-        <Grid />
+        <Grid data={props.data} index={props.index} handler={props.handler} />
         <div style={{ flexGrow: 1 }} />
       </div>
     </>
@@ -28,16 +28,34 @@ function Products() {
   //useEffect call
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/product/123?userID=${userID}`, {
+      .get(`http://localhost:5000/product/111?userID=${userID}`, {
         headers: { Authorization: "valodation " + token },
       })
       .then((res) => {
         if (res.data) {
-          setProducts(res.data);
+          setProducts(res.data.data);
         }
       })
       .catch((er) => {});
   }, []);
+
+  //delete handler
+  const deleteHandler = (index, id) => {
+    axios
+      .delete("http://localhost:5000/product/" + id, {
+        headers: { Authorization: "valodation " + token },
+      })
+      .then((res) => {
+        setProducts((pre) => {
+          const array = [...pre];
+          array.splice(index, 1);
+          return array;
+        });
+      })
+      .catch((er) => {
+        console.log(er);
+      });
+  };
 
   return (
     <>
@@ -53,10 +71,26 @@ function Products() {
             Add Product
           </button>
         </div>
-        {products.length >0 &&
-          products.map((row) => {
-            return <SingleProduct />;
-          })}
+        {products.length > 0 ? (
+          products.map((row, index) => {
+            return (
+              <SingleProduct
+                key={index}
+                handler={deleteHandler}
+                index={index}
+                data={row}
+              />
+            );
+          })
+        ) : (
+          <>
+            <div
+              style={{ textAlign: "center", color: "red", fontWeight: "700" }}
+            >
+              No products available
+            </div>
+          </>
+        )}
 
         <div style={{ paddingBottom: "2rem" }} />
       </div>

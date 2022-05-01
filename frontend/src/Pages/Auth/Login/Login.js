@@ -52,6 +52,7 @@ function Login() {
           <label className={classes.labels}>Email ID</label>
           <input
             type="text"
+            name="email"
             className={classes.inputs}
             required
             value={email}
@@ -62,6 +63,7 @@ function Login() {
           <label className={classes.labels}>Password</label>
           <input
             type="password"
+            name="password"
             className={classes.inputs}
             required
             value={password}

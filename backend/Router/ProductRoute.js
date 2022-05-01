@@ -5,14 +5,14 @@ const auth = require("../Middleware/auth");
 
 const ProductRouter = new Router({ prefix: "/product" });
 
-ProductRouter.get("/", auth, ProductCtrl.GetAllProducts)
-  .get("/search/:name", auth, ProductCtrl.GetSearchProduct)
+ProductRouter.get("/", ProductCtrl.GetAllProducts)
+  .get("/search/:name", ProductCtrl.GetSearchProduct)
   .get("/offer/:id", auth, authTrader, ProductCtrl.GetPromotions)
   .put("/offer/:id", auth, authTrader, ProductCtrl.AddPromotion)
   .del("/offer/:id", auth, authTrader, ProductCtrl.DeletePromotions)
-  .get("/:id", auth, authTrader, ProductCtrl.GetProduct)
-  .put("/:id", auth, authTrader, ProductCtrl.UpdateProduct)
-  .delete("/:id", auth, authTrader, ProductCtrl.DeleteProduct)
-  .post("/", auth, authTrader, ProductCtrl.AddProduct);
+  .get("/:id", ProductCtrl.GetProduct)
+  .put("/:id", ProductCtrl.UpdateProduct)
+  .delete("/:id", ProductCtrl.DeleteProduct) 
+  .post("/", ProductCtrl.AddProduct);
 
 module.exports = ProductRouter;

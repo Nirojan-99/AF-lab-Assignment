@@ -28,7 +28,6 @@ function Account() {
       })
       .then((res) => {
         const data = res.data.data;
-        console.log(data);
         setUserObj(data);
         setAddress(data.address);
         setEmail(data.email);
@@ -47,8 +46,7 @@ function Account() {
         headers: { Authorization: "valodation " + token },
       })
       .then((res) => {
-        // window.location.reload();
-        console.log(res.data);
+        window.location.reload();
       })
       .catch((er) => {});
   };
@@ -73,8 +71,7 @@ function Account() {
         headers: { Authorization: "valodation " + token },
       })
       .then((res) => {
-        // window.location.reload();
-        console.log(res.data);
+        window.location.reload();
       })
       .catch((er) => {});
   };

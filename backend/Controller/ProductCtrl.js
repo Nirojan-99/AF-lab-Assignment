@@ -4,6 +4,64 @@ const randomBytes = require("randombytes");
 
 const productData = new Map();
 
+//dummy data
+const newProduct1 = new Product(
+  "12345",
+  "8d1601d6666579e7ca8530d4fc182906",
+  "computer1",
+  "123.99",
+  "its a good product",
+  "https://images.pexels.com/photos/1279107/pexels-photo-1279107.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+  "computer"
+);
+
+productData.set(newProduct1.id, newProduct1);
+
+const newProduct2 = new Product(
+  "1234567",
+  "8d1601d6666579e7ca8530d4fc182906",
+  "computer2",
+  "123.99",
+  "its a good product",
+  "https://images.pexels.com/photos/1279107/pexels-photo-1279107.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+  "computer"
+);
+
+productData.set(newProduct2.id, newProduct2);
+const newProduct3 = new Product(
+  "12345678",
+  "8d1601d6666579e7ca8530d4fc182906",
+  "computer3",
+  "123.99",
+  "its a good product",
+  "https://images.pexels.com/photos/1279107/pexels-photo-1279107.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+  "computer"
+);
+
+productData.set(newProduct3.id, newProduct3);
+const newProduct4 = new Product(
+  "12345679",
+  "d1601d6666579e7ca8530d4fc182906",
+  "computer4",
+  "123.99",
+  "its a good product",
+  "https://images.pexels.com/photos/1279107/pexels-photo-1279107.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+  "computer"
+);
+
+productData.set(newProduct4.id, newProduct4);
+const newProduct5 = new Product(
+  "123456790",
+  "8d1601d6666579e7ca8530d4fc182906",
+  "computer5",
+  "123.99",
+  "its a good product",
+  "https://images.pexels.com/photos/1279107/pexels-photo-1279107.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+  "computer"
+);
+
+productData.set(newProduct5.id, newProduct5);
+
 exports.productData = productData;
 
 exports.GetAllProducts = (ctx) => {
@@ -19,6 +77,7 @@ exports.GetAllProducts = (ctx) => {
 exports.GetProduct = (ctx) => {
   const { id } = ctx.params;
   const { userID } = ctx.query;
+  console.log(userID)
   let userProducts = [];
   if (userID) {
     for (let key of productData.keys()) {
@@ -134,7 +193,7 @@ exports.GetSearchProduct = (ctx) => {
   const { name } = ctx.params;
   let data = [];
   for (let key of productData.keys()) {
-    if (productData.get(key).title === name) {
+    if (productData.get(key).title.includes(name)) {
       data.push(productData.get(key));
     }
   }
