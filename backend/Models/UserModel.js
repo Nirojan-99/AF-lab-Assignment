@@ -14,7 +14,22 @@ class User {
     return this.cart;
   };
   setCart = (data) => {
-    this.cart = data;
+    for (var i = 0; i < this.cart.length; i++) {
+      if (this.cart[i] === data) {
+        return false;
+      }
+    }
+    this.cart.push(data);
+  };
+
+  removeItem = (data) => {
+    for (var i = 0; i < this.cart.length; i++) {
+      if (this.cart[i] === data) {
+        this.cart.splice(i, 1);
+        return true;
+      }
+    }
+    return false;
   };
   deleteCart = () => {
     this.cart = [];

@@ -134,6 +134,10 @@ exports.AddProduct = (ctx) => {
     image,
     category
   );
+  if (productData.has(id)) {
+    ctx.body = { added: false };
+    ctx.status = 404;
+  }
   productData.set(id, newProduct);
   ctx.body = { added: true };
   ctx.status = 200;

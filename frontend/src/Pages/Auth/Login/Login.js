@@ -19,7 +19,7 @@ function Login() {
   const loginHandler = (event) => {
     event.preventDefault();
     setError(false);
-    if (!email.trim() || !email.includes("@") || !email.endsWith(".com")) {
+    if (!email.trim() || !email.includes("@") ) {
       setError(true);
       return;
     }

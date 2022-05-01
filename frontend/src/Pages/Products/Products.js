@@ -48,7 +48,6 @@ function Products() {
   const updateHandler = (event) => {
     event.preventDefault();
     if (
-      !id.trim() ||
       !title.trim() ||
       !price.trim() ||
       !category.trim() ||
@@ -72,14 +71,43 @@ function Products() {
       })
       .then((res) => {
         if (res.data) {
-          window.location.reload();
+          navigate("/", { replace: true });
         }
       })
       .catch((er) => {});
   };
 
   //add product
-  const addHandler = () => {};
+  const addHandler = (event) => {
+    event.preventDefault();
+    if (
+      !title.trim() ||
+      !price.trim() ||
+      !category.trim() ||
+      !description.trim()
+    ) {
+      return;
+    }
+    const data = {
+      userID,
+      title,
+      price,
+      description,
+      image,
+      category,
+    };
+
+    axios
+      .post("http://localhost:5000/product/", data, {
+        headers: { Authorization: "valodation " + token },
+      })
+      .then((res) => {
+        if (res.data) {
+          navigate("/", { replace: true });
+        }
+      })
+      .catch((er) => {});
+  };
 
   return (
     <>
@@ -105,8 +133,8 @@ function Products() {
         </div>
         <div style={{ flexGrow: 1, backgroundColor: "#fff" }}>
           <form className={classes.formcontainer} onSubmit={() => {}}>
-            <label>Product ID</label>
-            <input
+            {/* <label>Product ID</label> */}
+            {/* <input
               type={"text"}
               value={pid}
               name="id"
@@ -114,7 +142,7 @@ function Products() {
                 setID(event.target.value);
               }}
               required
-            />
+            /> */}
             <label>Product Name</label>
             <input
               type={"text"}

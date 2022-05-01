@@ -35,7 +35,7 @@ const third = new User(
 const forth = new User(
   "8d1601d6666579e7ca8530d4",
   "nirojan2",
-  "project@gmail.com",
+  "it20221928@my.sliit.lk",
   "1234",
   "0712461300",
   "Jaffna , PointPedro",
@@ -111,6 +111,7 @@ exports.Login = (ctx) => {
 
         ctx.body = { token, role: singleUser.role, id: singleUser.id };
         ctx.status = 201;
+        return;
       } else {
         ctx.body = { auth: false };
         ctx.status = 404;
@@ -222,6 +223,18 @@ exports.DeleteCart = (ctx) => {
   }
 };
 
+exports.RemoveElementCart = (ctx) => {
+  const { id, pid } = ctx.params;
+  if (userData.has(id)) {
+    userData.get(id).removeItem(pid);
+    ctx.body = { removed: true };
+    ctx.status = 200;
+  } else {
+    ctx.body = { removed: false };
+    ctx.status = 404;
+  }
+};
+
 exports.AddFavorite = (ctx) => {
   const { id } = ctx.params;
   const { data } = ctx.request.body;
@@ -247,20 +260,23 @@ exports.GetFavourites = (ctx) => {
 };
 
 exports.RemoveFavourite = (ctx) => {
-  const { id } = ctx.params;
-  const { data } = ctx.request.body;
+  const { id, pid } = ctx.params;
+
   if (userData.has(id)) {
-    const res = userData.get(id).removeFavorite(data);
+    const res = userData.get(id).removeFavorite(pid);
     if (res) {
       ctx.body = { remeoved: true };
       ctx.status = 200;
+      return;
     } else {
       ctx.body = { remeoved: false };
       ctx.status = 404;
+      return;
     }
   } else {
     ctx.body = { remeoved: false };
     ctx.status = 404;
+    return;
   }
 };
 
