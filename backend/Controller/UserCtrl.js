@@ -2,6 +2,10 @@ const User = require("../Models/UserModel");
 const randomBytes = require("randombytes");
 const jwt = require("jsonwebtoken");
 
+//product data
+const productCtrl = require("../Controller/ProductCtrl");
+const productData = productCtrl.productData;
+
 const userData = new Map();
 
 const user = new User(
@@ -203,7 +207,16 @@ exports.AddCart = (ctx) => {
 exports.GetCarts = (ctx) => {
   const { id } = ctx.params;
   if (userData.has(id)) {
-    ctx.body = userData.get(id).getCart();
+    const carts = userData.get(id).getCart();
+    let cartProduct = [];
+    for (let key of productData.keys()) {
+      for (let i = 0; i < carts.length; i++) {
+        if (productData.get(key).id === carts[i]) {
+          cartProduct.push(productData.get(key));
+        }
+      }
+    }
+    ctx.body = { data: cartProduct };
     ctx.status = 200;
   } else {
     ctx.body = { fetched: false };
@@ -251,7 +264,16 @@ exports.AddFavorite = (ctx) => {
 exports.GetFavourites = (ctx) => {
   const { id } = ctx.params;
   if (userData.has(id)) {
-    ctx.body = userData.get(id).getFavorites();
+    const favs = userData.get(id).getFavorites();
+    let favProducts = [];
+    for (let key of productData.keys()) {
+      for (let i = 0; i < favs.length; i++) {
+        if (productData.get(key).id === favs[i]) {
+          favProducts.push(productData.get(key));
+        }
+      }
+    }
+    ctx.body = { data: favProducts };
     ctx.status = 200;
   } else {
     ctx.body = { fetched: false };
