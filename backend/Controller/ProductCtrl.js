@@ -77,7 +77,7 @@ exports.GetAllProducts = (ctx) => {
 exports.GetProduct = (ctx) => {
   const { id } = ctx.params;
   const { userID } = ctx.query;
-  console.log(userID)
+
   let userProducts = [];
   if (userID) {
     for (let key of productData.keys()) {

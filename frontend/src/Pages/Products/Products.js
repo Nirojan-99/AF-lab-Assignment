@@ -1,11 +1,86 @@
 import classes from "./Products.module.css";
 import { BsImage } from "react-icons/bs";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Products() {
-  const [image, setImage] = useState(
-    "https://img.freepik.com/free-psd/cosmetic-product-packaging-mockup_1150-40282.jpg?w=2000"
-  );
+  //data
+  const { token, userID } = useSelector((state) => state.loging);
+  const { id } = useParams();
+
+  //hook
+  const navigate = useNavigate();
+
+  //inputs
+  const [title, setTile] = useState("");
+  const [image, setImage] = useState("");
+  const [price, setPrice] = useState("");
+  const [pid, setID] = useState("");
+  const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
+
+  //useEffect
+  useEffect(() => {
+    if (id) {
+      axios
+        .get("http://localhost:5000/product/" + id, {
+          headers: { Authorization: "valodation " + token },
+        })
+        .then((res) => {
+          setID(res.data.data.id);
+          setTile(res.data.data.title);
+          setPrice(res.data.data.price);
+          setCategory(res.data.data.category);
+          setImage(res.data.data.image);
+          setDescription(res.data.data.description);
+        })
+        .catch((er) => {
+          navigate("/", { replace: true });
+        });
+    }
+  }, []);
+
+  //update
+  const updateHandler = (event) => {
+    event.preventDefault();
+    if (
+      !id.trim() ||
+      !title.trim() ||
+      !price.trim() ||
+      !category.trim() ||
+      !description.trim()
+    ) {
+      return;
+    }
+
+    const data = {
+      userID,
+      title,
+      price,
+      description,
+      image,
+      category,
+    };
+
+    axios
+      .put("http://localhost:5000/product/" + id, data, {
+        headers: { Authorization: "valodation " + token },
+      })
+      .then((res) => {
+        if (res.data) {
+          window.location.reload();
+        }
+      })
+      .catch((er) => {});
+  };
+
+  //add product
+  const addHandler = () => {};
+
   return (
     <>
       <div className={classes.container}>
@@ -31,16 +106,60 @@ function Products() {
         <div style={{ flexGrow: 1, backgroundColor: "#fff" }}>
           <form className={classes.formcontainer} onSubmit={() => {}}>
             <label>Product ID</label>
-            <input type={"text"} onChange={() => {}} required />
+            <input
+              type={"text"}
+              value={pid}
+              name="id"
+              onChange={(event) => {
+                setID(event.target.value);
+              }}
+              required
+            />
             <label>Product Name</label>
-            <input type={"text"} onChange={() => {}} required />
+            <input
+              type={"text"}
+              value={title}
+              name="name"
+              onChange={(event) => {
+                setTile(event.target.value);
+              }}
+              required
+            />
             <label>Product Price</label>
-            <input type={"text"} onChange={() => {}} required />
+            <input
+              type={"text"}
+              value={price}
+              name="price"
+              onChange={(event) => {
+                setPrice(event.target.value);
+              }}
+              required
+            />
             <label>Product Category</label>
-            <input type={"text"} onChange={() => {}} required />
+            <input
+              type={"text"}
+              value={category}
+              name="category"
+              onChange={(event) => {
+                setCategory(event.target.value);
+              }}
+              required
+            />
             <label>Product Description</label>
-            <textarea />
-            <button type="submit" className={classes.add}>ADD</button>
+            <textarea
+              required
+              value={description}
+              onChange={(event) => {
+                setDescription(event.target.value);
+              }}
+            />
+            <button
+              onClick={id ? updateHandler : addHandler}
+              type="submit"
+              className={classes.add}
+            >
+              {id ? "UPDATE" : "ADD"}
+            </button>
           </form>
         </div>
       </div>
