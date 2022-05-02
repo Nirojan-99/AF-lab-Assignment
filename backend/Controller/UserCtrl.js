@@ -263,21 +263,31 @@ exports.AddFavorite = (ctx) => {
 
 exports.GetFavourites = (ctx) => {
   const { id } = ctx.params;
-  if (userData.has(id)) {
-    const favs = userData.get(id).getFavorites();
-    let favProducts = [];
-    for (let key of productData.keys()) {
-      for (let i = 0; i < favs.length; i++) {
-        if (productData.get(key).id === favs[i]) {
-          favProducts.push(productData.get(key));
+  const { favId } = ctx.query;
+
+  if (favId) {
+    if (userData.has(id)) {
+      ctx.body = userData.get(id).getFavorites();
+      ctx.status = 200;
+      return;
+    }
+  } else {
+    if (userData.has(id)) {
+      const favs = userData.get(id).getFavorites();
+      let favProducts = [];
+      for (let key of productData.keys()) {
+        for (let i = 0; i < favs.length; i++) {
+          if (productData.get(key).id === favs[i]) {
+            favProducts.push(productData.get(key));
+          }
         }
       }
+      ctx.body = { data: favProducts };
+      ctx.status = 200;
+    } else {
+      ctx.body = { fetched: false };
+      ctx.status = 404;
     }
-    ctx.body = { data: favProducts };
-    ctx.status = 200;
-  } else {
-    ctx.body = { fetched: false };
-    ctx.status = 404;
   }
 };
 

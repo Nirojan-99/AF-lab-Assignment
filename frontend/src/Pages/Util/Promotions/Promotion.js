@@ -1,14 +1,14 @@
 import classes from "./Promotions.module.css";
 
-function Promotion() {
+function Promotion(props) {
   return (
     <>
       <div className={classes.container}>
-        <div className={classes.title}>70% off</div>
-        <div className={classes.code}>OFF70</div>
+        <div className={classes.title}>{props.data.title}</div>
+        <div className={classes.code}>{props.data.code}</div>
         <div style={{ flexGrow: 1 }} />
         <div>
-          <button className={classes.remove}>Remove</button>
+          <div style={{ fontWeight: "700" }}>{props.data.description}</div>
         </div>
       </div>
     </>

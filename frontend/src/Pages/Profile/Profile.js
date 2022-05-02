@@ -21,7 +21,7 @@ function Profile() {
       case "details":
         return <Account />;
         break;
-      case "products":
+      case "Inventory":
         return <Products />;
         break;
       case "order":
@@ -59,15 +59,15 @@ function Profile() {
         {role === "trader" && (
           <div
             onClick={() => {
-              setPage("products");
+              setPage("Inventory");
               setAniClass(classes.anomationClass);
               setTimeout(() => {
                 setAniClass(classes.container);
               }, 400);
             }}
-            className={page === "products" ? classes.activeTabs : classes.tabs}
+            className={page === "Inventory" ? classes.activeTabs : classes.tabs}
           >
-            <button>Products</button>
+            <button>Inventory</button>
           </div>
         )}
         {role === "customer" && (

@@ -9,7 +9,8 @@
     justify-content: center;
     background-color: #fff;
 }
-.image{
+
+.image {
     width: 15rem;
     height: 24rem;
     object-fit: cover;
@@ -18,13 +19,15 @@
     padding-left: .5rem;
     padding-right: .5rem;
 }
-.formcontainer{
+
+.formcontainer {
     /* margin-left: 1rem; */
     padding: 1rem;
     display: flex;
     flex-direction: column;
 }
-.formcontainer input{
+
+.formcontainer input {
     border: none;
     outline: none;
     padding: .7rem .5rem;
@@ -35,13 +38,15 @@
     background-color: rgba(51, 51, 51, 0.455);
     font-size: .9rem;
 }
-.formcontainer label{
+
+.formcontainer label {
     font-weight: 700;
     margin-bottom: .3rem;
     color: #333;
     font-size: .8rem;
 }
-.formcontainer textarea{
+
+.formcontainer textarea {
     border: none;
     outline: none;
     padding: .7rem .5rem;
@@ -53,8 +58,9 @@
     min-height: 4rem;
     resize: none;
     font-size: .9rem;
-} 
-.add{
+}
+
+.add {
     background-color: #62BB46;
     border: none;
     outline: none;
@@ -65,8 +71,23 @@
     color: #333;
     cursor: pointer;
 }
-.add:hover{
+
+.add:hover {
     background-color: #333;
     color: #62BB46;
     transition-duration: .5s;
+}
+
+.addpromo {
+    width: 40%;
+    margin: auto;
+    margin-bottom: 1rem;
+    border: none;
+    outline: none;
+    padding: .5rem;
+    background-color: #333;
+    color: #fff;
+    font-weight: bold;
+    border-radius: .2rem;
+    cursor: pointer;
 }

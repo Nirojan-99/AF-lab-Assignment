@@ -4,7 +4,7 @@ import { useState } from "react";
 
 function CartProduct(props) {
   // cart value
-  const [val, setVal] = useState(0);
+  const [val, setVal] = useState(1);
 
   //increase value
   const incVal = () => {
@@ -14,14 +14,14 @@ function CartProduct(props) {
 
   //decrease value
   const decVal = () => {
-    if (val >= 1) {
+    if (val >= 2) {
       props.quantityHandler("dec", +props.data.price, props.data._id, val - 1);
     }
     setVal((pre) => {
       if (pre > 1) {
         return --pre;
       } else {
-        return 0;
+        return 1;
       }
     });
   };

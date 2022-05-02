@@ -157,22 +157,33 @@ exports.DeleteProduct = (ctx) => {
 
 exports.GetPromotions = (ctx) => {
   const { id } = ctx.params;
-  let userProducts = [];
-  for (let key of productData.keys()) {
-    if (productData.get(key).userID === userID) {
-      userProducts.push(productData.get(key).promotion);
+  const { single } = ctx.query;
+
+  if (single) {
+    if (productData.has(id)) {
+      ctx.body = productData.get(id).promotion;
+      ctx.status = 200;
+      return;
     }
+  } else {
+    let userProducts = [];
+    for (let key of productData.keys()) {
+      if (productData.get(key).userID === id) {
+        if (productData.get(key).promotion.title) {
+          userProducts.push(productData.get(key).promotion);
+        }
+      }
+    }
+    ctx.body = { data: userProducts };
+    ctx.status = 200;
   }
-  ctx.body = { data: userProducts };
-  ctx.status = 200;
 };
 
 exports.AddPromotion = (ctx) => {
   const { id } = ctx.params;
-  const { title, discount } = ctx.request.body;
-
+  const { title, code, description } = ctx.request.body;
   if (productData.has(id)) {
-    productData.get(id).setPromotion(title, discount);
+    productData.get(id).setPromotion(title, code, description);
     ctx.body = { updated: true };
     ctx.status = 200;
   } else {

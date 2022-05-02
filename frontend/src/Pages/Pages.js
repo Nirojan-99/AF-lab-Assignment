@@ -24,7 +24,7 @@ function Pages() {
           <>
             {role === "trader" && (
               <>
-                <Route eaxct path="/promo/add" element={<NewPromo />} />
+                <Route eaxct path="/promo/add/:id" element={<NewPromo />} />
                 <Route eaxct path="/product/new" element={<Products />} />
                 <Route eaxct path="/product/edit/:id" element={<Products />} />
               </>

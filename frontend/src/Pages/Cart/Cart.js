@@ -57,6 +57,19 @@ function Cart() {
       })
       .then((res) => {
         setcart(res.data.data);
+        setCartObj((pre) => {
+          for (let i = 0; i < res.data.data.length; i++) {
+            let obj = { ...pre, [res.data.data[i].id]: 1 };
+            return obj;
+          }
+        });
+        setTotal((pre) => {
+          let data = pre * 100;
+          for (let i = 0; i < res.data.data.length; i++) {
+            data += +res.data.data[i].price * 100;
+          }
+          return data / 100;
+        });
       })
       .catch((er) => {});
   }, []);
@@ -107,6 +120,7 @@ function Cart() {
       <div className={classes.bottom}>
         <div style={{ flexGrow: 3 }} />
         <button
+          disabled={total === 0}
           onClick={() => {
             checkout();
           }}

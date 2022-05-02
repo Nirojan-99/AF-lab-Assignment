@@ -188,6 +188,16 @@ function Products() {
             >
               {id ? "UPDATE" : "ADD"}
             </button>
+            {id && (
+              <button
+                onClick={() => {
+                  navigate("/promo/add/" + pid);
+                }}
+                className={classes.addpromo}
+              >
+                Add Promotion
+              </button>
+            )}
           </form>
         </div>
       </div>

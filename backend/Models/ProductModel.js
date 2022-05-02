@@ -9,13 +9,15 @@ class Product {
     this.category = category;
     this.promotion = {};
   }
-  setPromotion = (title, discount) => {
+  setPromotion = (title, code, description) => {
     this.promotion.title = title;
-    this.promotion.discount = discount;
+    this.promotion.code = code;
+    this.promotion.description = description;
   };
   removePromotion = () => {
     this.promotion.title = "";
-    this.promotion.discount = "";
+    this.promotion.code = "";
+    this.promotion.description = "";
   };
 }
 

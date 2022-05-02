@@ -26,7 +26,7 @@ function Favorites() {
       <div className={classes.productContainer}>
         {products.length > 0 ? (
           products.map((row, index) => {
-            return <Grid data={row} index={index} key={index} />;
+            return <Grid val={true} data={row} index={index} key={index} />;
           })
         ) : (
           <></>

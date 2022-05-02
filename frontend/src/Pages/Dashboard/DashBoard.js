@@ -9,6 +9,7 @@ function Dashboard() {
   const { token, userID } = useSelector((state) => state.loging);
   const [products, setProducts] = useState([]);
   const [searchvalue, setSearch] = useState("");
+  const [favorites, setFavorites] = useState([]);
 
   //useEffect
   useEffect(() => {
@@ -22,6 +23,18 @@ function Dashboard() {
         }
       })
       .catch((er) => {});
+
+    //get fav products
+    axios
+      .get(`http://localhost:5000/users/favorites/${userID}?favId=${true}`, {
+        headers: { Authorization: "Agriuservalidation " + token },
+      })
+      .then((res) => {
+        if (res.data) {
+          setFavorites(res.data);
+        }
+      })
+      .catch(() => {});
   }, []);
 
   //search controller
@@ -40,6 +53,17 @@ function Dashboard() {
     } else {
       window.location.reload();
     }
+  };
+
+  //find fav products
+  const findfav = (array, id) => {
+    let val = false;
+    array.forEach((data) => {
+      if (data === id) {
+        val = true;
+      }
+    });
+    return val;
   };
 
   //delete handler
@@ -81,8 +105,10 @@ function Dashboard() {
       <div className={classes.productContainer}>
         {products.length > 0 ? (
           products.map((row, index) => {
+            const val = findfav(favorites, row.id);
             return (
               <Grid
+                val={val}
                 key={index}
                 index={index}
                 handler={deleteHandler}

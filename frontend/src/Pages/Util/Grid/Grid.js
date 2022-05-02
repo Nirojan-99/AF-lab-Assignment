@@ -7,7 +7,9 @@ import { useState } from "react";
 function Grid(props) {
   //userdata
   const { token, userID, role } = useSelector((state) => state.loging);
-  const [wishlist, setWishlist] = useState("Add to Wishlist");
+  const [wishlist, setWishlist] = useState(
+    props.val ? "Remove from Wishlist" : "Add to Wishlist"
+  );
   const [cart, setCart] = useState("Add to Cart");
 
   //add to wishlist
