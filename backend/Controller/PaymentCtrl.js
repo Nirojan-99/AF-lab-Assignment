@@ -28,9 +28,8 @@ exports.CheckOTP = (ctx) => {
   const { id, OTP } = ctx.params;
   if (paymentData.has(id)) {
     const data = paymentData.get(id);
-    console.log(OTP , data.OTP);
+    console.log(OTP, data.OTP);
     if (data.OTP === OTP) {
-      
       ctx.body = { match: true };
       ctx.status = 200;
       return;
@@ -58,6 +57,19 @@ exports.GetPayments = (ctx) => {
   }
   ctx.body = { fetched: false };
   ctx.status = 404;
+};
+
+exports.DeletePayment = (ctx) => {
+  const { id } = ctx.params;
+
+  if (paymentData.has(id)) {
+    paymentData.delete(id);
+    ctx.body = { deleted: true };
+    ctx.status = 200;
+  } else {
+    ctx.body = { deleted: false };
+    ctx.status = 404;
+  }
 };
 
 exports.paymentData = paymentData;
