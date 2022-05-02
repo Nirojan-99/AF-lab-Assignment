@@ -13,7 +13,7 @@ function Payment() {
   //useEffect
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/payment/${userID}`, {
+      .get(`http://localhost:5000/payments/${userID}`, {
         headers: { Authorization: "valodation " + token },
       })
       .then((res) => {
@@ -25,7 +25,7 @@ function Payment() {
   //handler
   const removeHandler = () => {
     axios
-      .delete(`http://localhost:5000/payment/${payment.id}`, {
+      .delete(`http://localhost:5000/payments/${payment.id}`, {
         headers: { Authorization: "valodation " + token },
       })
       .then((res) => {

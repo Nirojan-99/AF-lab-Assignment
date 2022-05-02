@@ -27,7 +27,7 @@ function Products() {
   useEffect(() => {
     if (id) {
       axios
-        .get("http://localhost:5000/product/" + id, {
+        .get("http://localhost:5000/products/" + id, {
           headers: { Authorization: "valodation " + token },
         })
         .then((res) => {
@@ -66,7 +66,7 @@ function Products() {
     };
 
     axios
-      .put("http://localhost:5000/product/" + id, data, {
+      .put("http://localhost:5000/products/" + id, data, {
         headers: { Authorization: "valodation " + token },
       })
       .then((res) => {
@@ -98,7 +98,7 @@ function Products() {
     };
 
     axios
-      .post("http://localhost:5000/product/", data, {
+      .post("http://localhost:5000/products/", data, {
         headers: { Authorization: "valodation " + token },
       })
       .then((res) => {

@@ -39,7 +39,7 @@ function Register() {
     const data = { email, mobile, address, name: userName, role, password };
 
     axios
-      .post("http://localhost:5000/user", data)
+      .post("http://localhost:5000/users", data)
       .then((res) => {
         dispatch(
           login({ role: res.data.role, id: res.data.id, token: res.data.token })

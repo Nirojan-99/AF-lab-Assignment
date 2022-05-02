@@ -28,7 +28,7 @@ function Products() {
   //useEffect call
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/product/111?userID=${userID}`, {
+      .get(`http://localhost:5000/products/111?userID=${userID}`, {
         headers: { Authorization: "valodation " + token },
       })
       .then((res) => {
@@ -42,7 +42,7 @@ function Products() {
   //delete handler
   const deleteHandler = (index, id) => {
     axios
-      .delete("http://localhost:5000/product/" + id, {
+      .delete("http://localhost:5000/products/" + id, {
         headers: { Authorization: "valodation " + token },
       })
       .then((res) => {

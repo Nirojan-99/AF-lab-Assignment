@@ -29,7 +29,7 @@ function Login() {
     }
     const data = { email, password };
     axios
-      .post("http://localhost:5000/user/auth/login", data)
+      .post("http://localhost:5000/users/auth/login", data)
       .then((res) => {
         dispatch(
           login({ role: res.data.role, id: res.data.id, token: res.data.token })

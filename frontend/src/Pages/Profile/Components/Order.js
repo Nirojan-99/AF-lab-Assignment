@@ -14,7 +14,7 @@ function Order() {
   //useEffect
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/order/${userID}`, {
+      .get(`http://localhost:5000/orders/${userID}`, {
         headers: { Authorization: "valodation " + token },
       })
       .then((res) => {

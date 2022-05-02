@@ -3,16 +3,16 @@ const authTrader = require("../Middleware/authTrader");
 const ProductCtrl = require("../Controller/ProductCtrl");
 const auth = require("../Middleware/auth");
 
-const ProductRouter = new Router({ prefix: "/product" });
+const ProductRouter = new Router({ prefix: "/products" });
 
 ProductRouter.get("/", ProductCtrl.GetAllProducts)
-  .get("/search/:name", ProductCtrl.GetSearchProduct)
-  .get("/offer/:id", auth, authTrader, ProductCtrl.GetPromotions)
-  .put("/offer/:id", auth, authTrader, ProductCtrl.AddPromotion)
-  .del("/offer/:id", auth, authTrader, ProductCtrl.DeletePromotions)
+  .post("/", ProductCtrl.AddProduct)
   .get("/:id", ProductCtrl.GetProduct)
   .put("/:id", ProductCtrl.UpdateProduct)
-  .delete("/:id", ProductCtrl.DeleteProduct) 
-  .post("/", ProductCtrl.AddProduct);
+  .delete("/:id", ProductCtrl.DeleteProduct)
+  .get("/search/:name", ProductCtrl.GetSearchProduct)
+  .get("/promotions/:id", auth, authTrader, ProductCtrl.GetPromotions)
+  .put("/promotions/:id", auth, authTrader, ProductCtrl.AddPromotion)
+  .del("/promotions/:id", auth, authTrader, ProductCtrl.DeletePromotions);
 
 module.exports = ProductRouter;

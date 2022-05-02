@@ -13,7 +13,7 @@ function Customers() {
   //useEffect
   useEffect(() => {
     axios
-      .get("http://localhost:5000/user", {
+      .get("http://localhost:5000/users", {
         headers: { Authorization: "valodation " + token },
       })
       .then((res) => {
@@ -29,7 +29,7 @@ function Customers() {
     event.preventDefault();
     if (searchvalue.trim()) {
       axios
-        .get(`http://localhost:5000/user/search/${searchvalue}`, {
+        .get(`http://localhost:5000/users/search/${searchvalue}`, {
           headers: { Authorization: "valodation " + token },
         })
         .then((res) => {

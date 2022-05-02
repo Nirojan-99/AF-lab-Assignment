@@ -28,7 +28,7 @@ function Checkout() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/order?id=${id}`, {
+      .get(`http://localhost:5000/orders?id=${id}`, {
         headers: { Authorization: "valodation " + token },
       })
       .then((res) => {
@@ -44,7 +44,7 @@ function Checkout() {
     event.preventDefault();
     axios
       .post(
-        `http://localhost:5000/payment/${userID}`,
+        `http://localhost:5000/payments/${userID}`,
         {
           amount,
           nameOnCard: carName,

@@ -26,18 +26,14 @@ function Confirmation(props) {
     }
 
     axios
-      .post(
-        `http://localhost:5000/payment/${props.id}/${OTP}`,
-        {},
-        {
-          headers: { Authorization: "valodation " + token },
-        }
-      )
+      .get(`http://localhost:5000/payments/${props.id}/${OTP}`, {
+        headers: { Authorization: "valodation " + token },
+      })
       .then((res) => {
         if (res.data) {
           // props.closeHandler();
           axios
-            .delete(`http://localhost:5000/user/cart/${userID}`, {
+            .delete(`http://localhost:5000/users/carts/${userID}`, {
               headers: { Authorization: "valodation " + token },
             })
             .then((res) => {

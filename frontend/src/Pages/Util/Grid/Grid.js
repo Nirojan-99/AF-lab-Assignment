@@ -14,7 +14,7 @@ function Grid(props) {
   const wishlistHandler = () => {
     axios
       .put(
-        "http://localhost:5000/user/favorite/" + userID,
+        "http://localhost:5000/users/favorites/" + userID,
         {
           data: props.data.id,
         },
@@ -32,7 +32,7 @@ function Grid(props) {
   const removeWishlistHandler = () => {
     axios
       .delete(
-        "http://localhost:5000/user/favorite/" + userID + "/" + props.data.id,
+        "http://localhost:5000/users/favorites/" + userID + "/" + props.data.id,
         {
           headers: { Authorization: "valodation " + token },
         }
@@ -47,7 +47,7 @@ function Grid(props) {
   const addCart = () => {
     axios
       .put(
-        "http://localhost:5000/user/cart",
+        "http://localhost:5000/users/carts",
         {
           cart: props.data.id,
           id: userID,
@@ -66,7 +66,7 @@ function Grid(props) {
   const removeCart = () => {
     axios
       .put(
-        `http://localhost:5000/user/cart/${userID}/${props.data.id}`,
+        `http://localhost:5000/users/carts/${userID}/${props.data.id}`,
         {},
         {
           headers: { Authorization: "valodation " + token },

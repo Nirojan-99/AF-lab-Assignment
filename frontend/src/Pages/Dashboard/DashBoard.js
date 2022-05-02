@@ -13,7 +13,7 @@ function Dashboard() {
   //useEffect
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/product`, {
+      .get(`http://localhost:5000/products`, {
         headers: { Authorization: "valodation " + token },
       })
       .then((res) => {
@@ -29,7 +29,7 @@ function Dashboard() {
     event.preventDefault();
     if (searchvalue) {
       axios
-        .get(`http://localhost:5000/product/search/${searchvalue.trim()}`, {
+        .get(`http://localhost:5000/products/search/${searchvalue.trim()}`, {
           headers: { Authorization: "valodation " + token },
         })
         .then((res) => {
@@ -45,7 +45,7 @@ function Dashboard() {
   //delete handler
   const deleteHandler = (index, id) => {
     axios
-      .delete("http://localhost:5000/product/" + id, {
+      .delete("http://localhost:5000/products/" + id, {
         headers: { Authorization: "valodation " + token },
       })
       .then((res) => {

@@ -3,7 +3,7 @@ const authTrader = require("../Middleware/authTrader");
 const orderCtrl = require("../Controller/OrderCtrl");
 const auth = require("../Middleware/auth");
 
-const orderRouter = new Router({ prefix: "/order" });
+const orderRouter = new Router({ prefix: "/orders" });
 
 orderRouter
   .get("/", auth, orderCtrl.GetOrder)

@@ -12,7 +12,7 @@ function Favorites() {
   //useEffect
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/user/favorite/${userID}`, {
+      .get(`http://localhost:5000/users/favorites/${userID}`, {
         headers: { Authorization: "valodation " + token },
       })
       .then((res) => {

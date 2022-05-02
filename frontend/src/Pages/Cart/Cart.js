@@ -19,7 +19,7 @@ function Cart() {
   const checkout = () => {
     axios
       .post(
-        `http://localhost:5000/order`,
+        `http://localhost:5000/orders`,
         { userID, total, products: cartObj },
         {
           headers: { Authorization: "valodation " + token },
@@ -52,7 +52,7 @@ function Cart() {
   //useEffect
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/user/cart/${userID}`, {
+      .get(`http://localhost:5000/users/carts/${userID}`, {
         headers: { Authorization: "valodation " + token },
       })
       .then((res) => {
@@ -65,7 +65,7 @@ function Cart() {
   const deleteHandler = (id, index) => {
     axios
       .put(
-        `http://localhost:5000/user/cart/${userID}/${id}`,
+        `http://localhost:5000/users/carts/${userID}/${id}`,
         {},
         {
           headers: { Authorization: "valodation " + token },

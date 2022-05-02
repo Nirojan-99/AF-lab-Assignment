@@ -23,7 +23,7 @@ function Account() {
   //called on render
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/user/${userID}`, {
+      .get(`http://localhost:5000/users/${userID}`, {
         headers: { Authorization: "valodation " + token },
       })
       .then((res) => {
@@ -42,7 +42,7 @@ function Account() {
     event.preventDefault();
     const data = { ...userObj, name, email, address, mobile };
     axios
-      .put(`http://localhost:5000/user`, data, {
+      .put(`http://localhost:5000/users`, data, {
         headers: { Authorization: "valodation " + token },
       })
       .then((res) => {
@@ -67,7 +67,7 @@ function Account() {
     const data = { ...userObj, password: newPassword };
 
     axios
-      .put(`http://localhost:5000/user`, data, {
+      .put(`http://localhost:5000/users`, data, {
         headers: { Authorization: "valodation " + token },
       })
       .then((res) => {
