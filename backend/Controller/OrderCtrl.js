@@ -10,11 +10,26 @@ exports.AddOrder = (ctx) => {
   const { userID, total, address, products, payment } = ctx.request.body;
   const newOrder = new Order(id, userID, total, address, products, payment);
   orderData.set(id, newOrder);
-  ctx.body = { added: true };
+  ctx.body = { added: true, id: id };
   ctx.status = 200;
 };
 
-exports.GetOrder = (ctx) => {
+exports.UpdateOrder = (ctx) => {
+  const { id } = ctx.params;
+  const { address, payment } = ctx.request.body;
+  if (orderData.has(id)) {
+    const data = orderData.get(id);
+    data.setPayment(payment);
+    data.setAddress(address);
+    ctx.body = { updated: true };
+    ctx.status = 200;
+  } else {
+    ctx.body = { updated: false };
+    ctx.status = 404;
+  }
+};
+
+exports.GetOrders = (ctx) => {
   const { id } = ctx.params;
   const orders = [];
   if (orderData.size > 0) {
@@ -25,6 +40,17 @@ exports.GetOrder = (ctx) => {
       }
     }
     ctx.body = { data: orders };
+    ctx.status = 200;
+  } else {
+    ctx.body = { fetched: false };
+    ctx.status = 404;
+  }
+};
+
+exports.GetOrder = (ctx) => {
+  const { id } = ctx.query;
+  if (orderData.has(id)) {
+    ctx.body = orderData.get(id);
     ctx.status = 200;
   } else {
     ctx.body = { fetched: false };

@@ -1,7 +1,30 @@
 import classes from "./Cart.module.css";
 import { BiX } from "react-icons/bi";
+import { useState } from "react";
 
 function CartProduct(props) {
+  // cart value
+  const [val, setVal] = useState(0);
+
+  //increase value
+  const incVal = () => {
+    setVal((pre) => ++pre);
+    props.quantityHandler("inc", +props.data.price, props.data._id, val + 1);
+  };
+
+  //decrease value
+  const decVal = () => {
+    if (val >= 1) {
+      props.quantityHandler("dec", +props.data.price, props.data._id, val - 1);
+    }
+    setVal((pre) => {
+      if (pre > 1) {
+        return --pre;
+      } else {
+        return 0;
+      }
+    });
+  };
   return (
     <div className={classes.cartContainer}>
       <img className={classes.image} src={props.data.image} />
@@ -19,9 +42,13 @@ function CartProduct(props) {
         <div className={classes.description}>{props.data.description}</div>
         <div style={{ flexGrow: 1 }} />
         <div className={classes.bottom}>
-          <button className={classes.positive}>-</button>
-          <div>1</div>
-          <button className={classes.positive1}>+</button>
+          <button className={classes.positive} onClick={decVal}>
+            -
+          </button>
+          <div>{val}</div>
+          <button className={classes.positive1} onClick={incVal}>
+            +
+          </button>
         </div>
       </box>
     </div>

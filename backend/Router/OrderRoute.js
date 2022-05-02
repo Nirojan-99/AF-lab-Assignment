@@ -6,7 +6,9 @@ const auth = require("../Middleware/auth");
 const orderRouter = new Router({ prefix: "/order" });
 
 orderRouter
-  .get("/:id", auth, orderCtrl.GetOrder)
-  .post("/", auth, orderCtrl.AddOrder);
+  .get("/", auth, orderCtrl.GetOrder)
+  .get("/:id", auth, orderCtrl.GetOrders)
+  .post("/", auth, orderCtrl.AddOrder)
+  .put("/", auth, orderCtrl.UpdateOrder);
 
 module.exports = orderRouter;

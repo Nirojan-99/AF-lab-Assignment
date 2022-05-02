@@ -29,7 +29,7 @@ function Pages() {
                 <Route eaxct path="/product/edit/:id" element={<Products />} />
               </>
             )}
-            <Route eaxct path="/checkout" element={<Checkout />} />
+            <Route eaxct path="/checkout/:id" element={<Checkout />} />
             <Route eaxct path="/favorites" element={<Favorites />} />
             <Route eaxct path="/profile" element={<Profile />} />
             <Route eaxct path="/cart" element={<Cart />} />

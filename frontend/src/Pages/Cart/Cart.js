@@ -12,6 +12,42 @@ function Cart() {
   //user data
   const { token, userID } = useSelector((state) => state.loging);
   const [cart, setcart] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [cartObj, setCartObj] = useState({});
+
+  //checkout handler
+  const checkout = () => {
+    axios
+      .post(
+        `http://localhost:5000/order`,
+        { userID, total, products: cartObj },
+        {
+          headers: { Authorization: "valodation " + token },
+        }
+      )
+      .then((res) => {
+        navigate(`/checkout/${res.data.id}`, { replace: true });
+      })
+      .catch((er) => {});
+  };
+
+  //total calculator
+  const quantityHandler = (operation, price, id, amount) => {
+    setCartObj((pre) => {
+      let obj = { ...pre, [id]: amount };
+      return obj;
+    });
+
+    if (operation === "inc") {
+      setTotal((pre) => {
+        let val;
+        val = pre * 100 + price * 100;
+        return val / 100;
+      });
+    } else {
+      setTotal((pre) => (pre * 100 - price * 100) / 100);
+    }
+  };
 
   //useEffect
   useEffect(() => {
@@ -49,13 +85,14 @@ function Cart() {
     <>
       <div className={classes.header}>
         <div style={{ flexGrow: 1 }} />
-        <div className={classes.title}>Total : $299.99</div>
+        <div className={classes.title}>{`Total : ${total}`}</div>
       </div>
       <div className={classes.cartdata}>
         {cart.length > 0 ? (
           cart.map((row, index) => {
             return (
               <CartProduct
+                quantityHandler={quantityHandler}
                 handler={deleteHandler}
                 index={index}
                 data={row}
@@ -71,7 +108,7 @@ function Cart() {
         <div style={{ flexGrow: 3 }} />
         <button
           onClick={() => {
-            navigate("/checkout");
+            checkout();
           }}
           className={classes.btn}
         >

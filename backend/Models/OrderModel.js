@@ -8,6 +8,14 @@ class Order {
     this.payment = payment;
     this.status = "";
   }
+
+  setPayment = (data) => {
+    this.payment = data;
+  };
+
+  setAddress = (data) => {
+    this.address = data;
+  };
 }
 
 module.exports = Order;
