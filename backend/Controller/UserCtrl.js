@@ -57,7 +57,7 @@ const fifth = new User(
 const sixth = new User(
   "8d1601d6666579e7ca8530d4fc1",
   "nirojan4",
-  "project2020sliit@gmail.com",
+  "project2020sliit@gmai.com",
   "1234",
   "0712461300",
   "Jaffna , PointPedro",
@@ -66,7 +66,7 @@ const sixth = new User(
 const seventh = new User(
   "8d1601d6666579e7ca8530d4fc1829",
   "nirojan5",
-  "project2020sliit@gmail.com",
+  "project2020it@gmail.com",
   "1234",
   "0712461300",
   "Jaffna , PointPedro",
