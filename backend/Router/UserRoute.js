@@ -4,7 +4,9 @@ const auth = require("../Middleware/auth");
 const authTrader = require("../Middleware/authTrader");
 
 const UserRouter = new Router({ prefix: "/users" });
-
+{
+  /*user related routes */
+}
 UserRouter.post("/", UserCtrl.Register)
   .get("/:id", UserCtrl.GetUser)
   .get("/", auth, authTrader, UserCtrl.GetUsers)

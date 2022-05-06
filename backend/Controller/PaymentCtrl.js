@@ -1,8 +1,9 @@
 const Payment = require("../Models/PaymentModel");
 const randomBytes = require("randombytes");
-
+//Map of payment data
 const paymentData = new Map();
 
+//add details of a payment to Map
 exports.AddPayment = (ctx) => {
   const userID = ctx.params.id;
   const OTP = randomBytes(2).toString("hex");
@@ -24,6 +25,7 @@ exports.AddPayment = (ctx) => {
   ctx.status = 200;
 };
 
+//validate OTP for payment
 exports.CheckOTP = (ctx) => {
   const { id, OTP } = ctx.params;
   if (paymentData.has(id)) {
@@ -45,6 +47,7 @@ exports.CheckOTP = (ctx) => {
   }
 };
 
+//get payment data of a single user
 exports.GetPayments = (ctx) => {
   const { id } = ctx.params;
   for (let key of paymentData.keys()) {
@@ -59,6 +62,7 @@ exports.GetPayments = (ctx) => {
   ctx.status = 404;
 };
 
+//delete payment data of a users
 exports.DeletePayment = (ctx) => {
   const { id } = ctx.params;
 

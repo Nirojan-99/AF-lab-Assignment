@@ -61,9 +61,12 @@ const newProduct5 = new Product(
 );
 
 productData.set(newProduct5.id, newProduct5);
+//end of dummy data
 
+//exporting product data
 exports.productData = productData;
 
+//get all product details
 exports.GetAllProducts = (ctx) => {
   if (productData.size > 0) {
     ctx.body = { data: [...productData.values()] };
@@ -74,6 +77,7 @@ exports.GetAllProducts = (ctx) => {
   }
 };
 
+//get one product details
 exports.GetProduct = (ctx) => {
   const { id } = ctx.params;
   const { userID } = ctx.query;
@@ -98,6 +102,7 @@ exports.GetProduct = (ctx) => {
   }
 };
 
+//update one product details
 exports.UpdateProduct = (ctx) => {
   const { id } = ctx.params;
   const { userID, title, price, description, image, category } =
@@ -121,6 +126,7 @@ exports.UpdateProduct = (ctx) => {
   }
 };
 
+//add one product to Map
 exports.AddProduct = (ctx) => {
   const id = randomBytes(8).toString("hex");
   const { userID, title, price, description, image, category } =
@@ -143,6 +149,7 @@ exports.AddProduct = (ctx) => {
   ctx.status = 200;
 };
 
+//delete one product from the Map
 exports.DeleteProduct = (ctx) => {
   const { id } = ctx.params;
   if (productData.has(id)) {
@@ -155,6 +162,7 @@ exports.DeleteProduct = (ctx) => {
   }
 };
 
+//get all/single promotion data according to creator[trader] id
 exports.GetPromotions = (ctx) => {
   const { id } = ctx.params;
   const { single } = ctx.query;
@@ -179,6 +187,7 @@ exports.GetPromotions = (ctx) => {
   }
 };
 
+//add promotion to a single product
 exports.AddPromotion = (ctx) => {
   const { id } = ctx.params;
   const { title, code, description } = ctx.request.body;
@@ -192,6 +201,7 @@ exports.AddPromotion = (ctx) => {
   }
 };
 
+//delete promotion data of a product
 exports.DeletePromotions = (ctx) => {
   const { id } = ctx.params;
   if (productData.has(id)) {
@@ -204,6 +214,7 @@ exports.DeletePromotions = (ctx) => {
   }
 };
 
+//get data of searched value
 exports.GetSearchProduct = (ctx) => {
   const { name } = ctx.params;
   let data = [];
@@ -216,4 +227,5 @@ exports.GetSearchProduct = (ctx) => {
   ctx.status = 200;
 };
 
+//exporting router
 exports.GetPromotion = (ctx) => {};

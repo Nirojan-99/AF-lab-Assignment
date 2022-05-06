@@ -1,10 +1,12 @@
 const Order = require("../Models/OrderModel");
 const randomBytes = require("randombytes");
 
+// Map of order details
 const orderData = new Map();
-
+//exporting order Map object
 exports.orderData = orderData;
 
+//add order data to Map
 exports.AddOrder = (ctx) => {
   const id = randomBytes(8).toString("hex");
   const rawDate = new Date();
@@ -29,6 +31,7 @@ exports.AddOrder = (ctx) => {
   ctx.status = 200;
 };
 
+//update order data after finishing payment
 exports.UpdateOrder = (ctx) => {
   const { id } = ctx.params;
   const { address, payment } = ctx.request.body;
@@ -44,6 +47,7 @@ exports.UpdateOrder = (ctx) => {
   }
 };
 
+//get all orders of a user
 exports.GetOrders = (ctx) => {
   const { id } = ctx.params;
   const orders = [];
@@ -62,6 +66,7 @@ exports.GetOrders = (ctx) => {
   }
 };
 
+//get a single order data
 exports.GetOrder = (ctx) => {
   const { id } = ctx.query;
   if (orderData.has(id)) {

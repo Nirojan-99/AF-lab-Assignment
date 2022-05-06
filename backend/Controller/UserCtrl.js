@@ -6,8 +6,10 @@ const jwt = require("jsonwebtoken");
 const productCtrl = require("../Controller/ProductCtrl");
 const productData = productCtrl.productData;
 
+//Map of user data
 const userData = new Map();
 
+//dummy data for users
 const user = new User(
   "53c918cb95a0401145c4e4c1e4346eff",
   "niro",
@@ -80,7 +82,9 @@ userData.set("8d1601d6666579e7ca853", fifth);
 userData.set("8d1601d6666579e7ca8530d4fc1", sixth);
 userData.set("8d1601d6666579e7ca8530d4fc1829", seventh);
 userData.set("8d1601d6666579e7ca8530d4fc182906", seconduser);
+//end of dummy data
 
+//user register
 exports.Register = (ctx) => {
   if (ctx.request.body) {
     const { email, mobile, address, name, role, password } = ctx.request.body;
@@ -98,6 +102,7 @@ exports.Register = (ctx) => {
   }
 };
 
+//user login
 exports.Login = (ctx) => {
   if (ctx.request.body) {
     const { email, password } = ctx.request.body;
@@ -124,6 +129,7 @@ exports.Login = (ctx) => {
   }
 };
 
+//get details of single user
 exports.GetUser = (ctx) => {
   if (ctx.params.id) {
     const id = ctx.params.id;
@@ -140,6 +146,7 @@ exports.GetUser = (ctx) => {
   }
 };
 
+//get all users data
 exports.GetUsers = (ctx) => {
   if (userData.size > 0) {
     ctx.body = { data: [...userData.values()] };
@@ -150,6 +157,7 @@ exports.GetUsers = (ctx) => {
   }
 };
 
+//get searched user data
 exports.SearchUser = (ctx) => {
   const { name } = ctx.params;
   let searchResult = [];
@@ -162,6 +170,7 @@ exports.SearchUser = (ctx) => {
   ctx.status = 200;
 };
 
+//update a single user
 exports.UpdateUser = (ctx) => {
   if (ctx.request.body.id) {
     const { email, mobile, address, name, role, password, id } =
@@ -177,6 +186,7 @@ exports.UpdateUser = (ctx) => {
   }
 };
 
+//delete a single user data
 exports.DeleteUser = (ctx) => {
   const { id } = ctx.request.body;
   if (userData.has(id)) {
@@ -189,9 +199,11 @@ exports.DeleteUser = (ctx) => {
   }
 };
 
+//TODO
 exports.AddDP = (ctx) => {};
 exports.DeleteDp = (ctx) => {};
 
+//add product id to cart of a single user
 exports.AddCart = (ctx) => {
   const { id, cart } = ctx.request.body;
   if (userData.has(id)) {
@@ -204,6 +216,7 @@ exports.AddCart = (ctx) => {
   }
 };
 
+//get cart data of a single user
 exports.GetCarts = (ctx) => {
   const { id } = ctx.params;
   if (userData.has(id)) {
@@ -224,6 +237,7 @@ exports.GetCarts = (ctx) => {
   }
 };
 
+//delete cart data of a single user after ordering them
 exports.DeleteCart = (ctx) => {
   const { id } = ctx.params;
   if (userData.has(id)) {
@@ -236,6 +250,7 @@ exports.DeleteCart = (ctx) => {
   }
 };
 
+//remove particular product from cart of a single user
 exports.RemoveElementCart = (ctx) => {
   const { id, pid } = ctx.params;
   if (userData.has(id)) {
@@ -248,6 +263,7 @@ exports.RemoveElementCart = (ctx) => {
   }
 };
 
+//add product id to wishlist of single user
 exports.AddFavorite = (ctx) => {
   const { id } = ctx.params;
   const { data } = ctx.request.body;
@@ -261,6 +277,7 @@ exports.AddFavorite = (ctx) => {
   }
 };
 
+//get wishlist data of a single user
 exports.GetFavourites = (ctx) => {
   const { id } = ctx.params;
   const { favId } = ctx.query;
@@ -291,6 +308,7 @@ exports.GetFavourites = (ctx) => {
   }
 };
 
+//remove particular product from wishlist of a user
 exports.RemoveFavourite = (ctx) => {
   const { id, pid } = ctx.params;
 
@@ -313,4 +331,3 @@ exports.RemoveFavourite = (ctx) => {
 };
 
 exports.userData = userData;
-// [...userData.values()];

@@ -5,6 +5,9 @@ const auth = require("../Middleware/auth");
 
 const orderRouter = new Router({ prefix: "/orders" });
 
+{
+  /*order related routes */
+}
 orderRouter
   .get("/", auth, orderCtrl.GetOrder)
   .get("/:id", auth, orderCtrl.GetOrders)

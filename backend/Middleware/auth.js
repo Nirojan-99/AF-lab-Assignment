@@ -1,3 +1,6 @@
+{
+  /*validating each request for authentication */
+}
 const jwt = require("jsonwebtoken");
 const userCtrl = require("../Controller/UserCtrl");
 

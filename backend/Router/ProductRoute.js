@@ -4,7 +4,9 @@ const ProductCtrl = require("../Controller/ProductCtrl");
 const auth = require("../Middleware/auth");
 
 const ProductRouter = new Router({ prefix: "/products" });
-
+{
+  /*product related routes */
+}
 ProductRouter.get("/", auth, ProductCtrl.GetAllProducts)
   .post("/", auth, authTrader, ProductCtrl.AddProduct)
   .get("/:id", auth, authTrader, ProductCtrl.GetProduct)
